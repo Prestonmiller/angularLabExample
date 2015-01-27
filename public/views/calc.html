@@ -12,10 +12,13 @@
     <script type="text/javascript" src="angularjs/angular.js"></script>
     <script type="text/javascript" src="javascript/main.controller.js"></script>
 </head>
-<body ng-app="mainApp">
+<body ng-app="mainApp" ng-controller="calcCtrl">
 <div ng-include="'views/navbar.html'"></div>
-<hr>
-<img class="img-circle" src="assets/images/marshmellow-kitten-big.jpg">
-<div class="text-center text-uppercase">A kitten drowning in marshmallows</div>
+<form ng-submit="calc">
+    <input ng-model="grade1" type="text" size="50" placeholder="A"><input ng-model="credits1" type="text" size="50" placeholder="5"><br/>
+    <input ng-model="grade2" type="text" size="50" placeholder="B"><input ng-model="credits2" type="text" size="50" placeholder="4"><br/>
+    <input ng-model="grade3" type="text" size="50" placeholder="C"><input ng-model="credits3" type="text" size="50" placeholder="3">
+    <input type="submit" value="submit" class="btn btn-primary">
+</form>
 </body>
 </html>
