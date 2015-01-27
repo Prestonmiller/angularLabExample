@@ -40,6 +40,10 @@ app.get('/about', function(req, res){
     res.sendFile('public/views/about.html', options);
 });
 
+app.get('/calc', function(req, res){
+    res.sendFile('public/views/calc.html', options);
+});
+
 app.get('/', function(req, res){
     res.sendFile('public/views/index.html', options);
 });
