@@ -60,8 +60,8 @@ var mainApp = angular.module("mainApp", []);
         $scope.credits3 = "";
 
 
-        $scope.calc = function(course1,credits1,course2,credits2,course3,credits3){
-            return (Number(letterToNumber(course1))*Number(credits1)+Number(letterToNumber(course2))*Number(credits2)+Number(letterToNumber(course3))*Number(credits3))/(Number(credits1)+Number(credits2)+Number(credits3));
+        $scope.calc = function(){
+            return (Number(letterToNumber($scope.grade1))*Number($scope.credits1)+Number(letterToNumber($scope.grade2))*Number($scope.credits2)+Number(letterToNumber($scope.grade3))*Number($scope.credits3))/(Number($scope.credits1)+Number($scope.credits2)+Number($scope.credits3));
         }
 
         var letterToNumber = function(course) {
