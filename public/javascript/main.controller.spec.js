@@ -138,12 +138,6 @@ describe('Testing controller: calcCtrl', function(){
         expect(scope.calc()).toBe(0.0);
     });
 
-    it("should be 1.3",function() {
-        scope.grade1 = scope.grade2 = scope.grade3 = "A";
-        scope.credits1 = 5;
-        expect(scope.calc()).toBe(4.0);
-    });
-
     it("should be false", function(){
         expect(scope.isNumeric("A")).toBe(false);
     });
@@ -160,5 +154,16 @@ describe('Testing controller: calcCtrl', function(){
         expect(scope.isLetter("E")).toBe(false);
     });
 
+    it("should be error", function(){
+        scope.grade1 = scope.grade2 = scope.grade3 = "A";
+        scope.credits1 = scope.credits2 = scope.credits3 = "J";
+        expect(scope.getGPA()).toBe("There was an error.");
+    });
+
+    it("should be green", function(){
+        scope.grade1 = scope.grade2 = scope.grade3 = "A";
+        scope.credits1 = scope.credits2 = scope.credits3 = 5;
+        expect(scope.getGPA()).toBe("Your GPA is: <span class='green'>4!</span>");
+    });
 
 });

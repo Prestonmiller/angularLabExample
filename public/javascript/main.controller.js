@@ -61,7 +61,17 @@ var mainApp = angular.module("mainApp", []);
         $scope.gpa = "";
 
         $scope.getGPA = function(){
-
+            if (!$scope.isLetter($scope.grade1) || !$scope.isLetter($scope.grade2) || !$scope.isLetter($scope.grade3) || !$scope.isNumeric($scope.credits1) || !$scope.isNumeric($scope.credits2) || !$scope.isNumeric($scope.credits3)) {
+                return "There was an error.";
+            }
+            var GPA = $scope.calc();
+            if (GPA >= 3) {
+                return "Your GPA is: <span class='green'>" + GPA + "!</span>";
+            } else if (GPA >= 2.0) {
+                return "Your GPA is: <span class='yellow'>" + GPA + "!</span>";
+            } else {
+                return "Your GPA is: <span class='red'>" + GPA + "!</span>";
+            }
         }
 
         $scope.isNumeric = function(arg1){
