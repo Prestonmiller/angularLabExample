@@ -98,5 +98,33 @@ var mainApp = angular.module("mainApp", []);
                     return 0;
             }
         }
+        $scope.isLetter = function(course) {
+            switch (course.toUpperCase()) {
+                case "A":
+
+                case "A-":
+
+                case "B":
+
+                case "B+":
+
+                case"B-":
+
+                case "C":
+
+                case "C+":
+
+                case "C-":
+
+                case "D":
+
+                case "D+":
+
+                case "F":
+                    return true;
+                default:
+                    return false;
+            }
+        }
 
     });

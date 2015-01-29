@@ -152,6 +152,13 @@ describe('Testing controller: calcCtrl', function(){
         expect(scope.isNumeric(3)).toBe(true);
     });
 
+    it("should be true", function(){
+        expect(scope.isLetter("A")).toBe(true);
+    });
+
+    it("should be false", function(){
+        expect(scope.isLetter("E")).toBe(false);
+    });
 
 
 });
