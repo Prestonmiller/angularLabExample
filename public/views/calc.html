@@ -14,6 +14,7 @@
 </head>
 <body ng-app="mainApp" ng-controller="calcCtrl">
 <div ng-include="'views/navbar.html'"></div>
+<div ng-repeat=gpa in gpas></div>
 <form ng-submit="calc()">
     <input ng-model="grade1" type="text" size="50" placeholder="A"><input ng-model="credits1" type="text" size="50" placeholder="5"><br/>
     <input ng-model="grade2" type="text" size="50" placeholder="B"><input ng-model="credits2" type="text" size="50" placeholder="4"><br/>
