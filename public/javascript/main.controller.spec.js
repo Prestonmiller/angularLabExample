@@ -165,5 +165,15 @@ describe('Testing controller: calcCtrl', function(){
         scope.credits1 = scope.credits2 = scope.credits3 = 5;
         expect(scope.getGPA()).toBe("Your GPA is: <span class='green'>4!</span>");
     });
+    it("should be yellow", function(){
+        scope.grade1 = scope.grade2 = scope.grade3 = "C";
+        scope.credits1 = scope.credits2 = scope.credits3 = 5;
+        expect(scope.getGPA()).toBe("Your GPA is: <span class='yellow'>2!</span>");
+    });
+    it("should be red", function(){
+        scope.grade1 = scope.grade2 = scope.grade3 = "F";
+        scope.credits1 = scope.credits2 = scope.credits3 = 5;
+        expect(scope.getGPA()).toBe("Your GPA is: <span class='red'>0!</span>");
+    });
 
 });
