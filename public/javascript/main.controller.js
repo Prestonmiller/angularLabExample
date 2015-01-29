@@ -58,14 +58,21 @@ var mainApp = angular.module("mainApp", []);
         $scope.credits1 = "";
         $scope.credits2 = "";
         $scope.credits3 = "";
+        $scope.gpa = "";
 
+        $scope.getGPA = function(){
 
-
-        $scope.calc = function(){
-            return (Number(letterToNumber($scope.grade1))*Number($scope.credits1)+Number(letterToNumber($scope.grade2))*Number($scope.credits2)+Number(letterToNumber($scope.grade3))*Number($scope.credits3))/(Number($scope.credits1)+Number($scope.credits2)+Number($scope.credits3));
         }
 
-        var letterToNumber = function(course) {
+        $scope.isNumeric = function(arg1){
+            return !isNaN(parseFloat(arg1));
+        }
+
+        $scope.calc = function(){
+            return (Number($scope.letterToNumber($scope.grade1))*Number($scope.credits1)+Number($scope.letterToNumber($scope.grade2))*Number($scope.credits2)+Number($scope.letterToNumber($scope.grade3))*Number($scope.credits3))/(Number($scope.credits1)+Number($scope.credits2)+Number($scope.credits3));
+        }
+
+        $scope.letterToNumber = function(course) {
             switch (course.toUpperCase()) {
                 case "A":
                     return 4;

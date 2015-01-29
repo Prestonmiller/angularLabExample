@@ -67,80 +67,91 @@ describe('Testing controller: navbarCtrl', function(){
 
 describe('Testing controller: calcCtrl', function(){
 
+    beforeEach(module('mainApp'));
+
+    var scope; var mainCtrl;
+
+    beforeEach(inject(function($controller, $rootScope) {
+        scope = $rootScope.$new();
+        mainCtrl = $controller('calcCtrl', {
+            $scope: scope
+        });
+    }));
+
     it("should be 1",function() {
-        expect(letterToNumber("D")).toBe(1);
+        expect(scope.letterToNumber("D")).toBe(1);
     });
 
     it("should be 1.3",function() {
-        expect(letterToNumber("D+")).toBe(1.3);
+        expect(scope.letterToNumber("D+")).toBe(1.3);
     });
 
     it("should be 1.7",function() {
-        expect(letterToNumber("C-")).toBe(1.7);
+        expect(scope.letterToNumber("C-")).toBe(1.7);
     });
 
     it("should be 2",function() {
-        expect(letterToNumber("C")).toBe(2);
+        expect(scope.letterToNumber("C")).toBe(2);
     });
 
     it("should be 2.3",function() {
-        expect(letterToNumber("C+")).toBe(2.3);
+        expect(scope.letterToNumber("C+")).toBe(2.3);
     });
 
     it("should be 2.7",function() {
-        expect(letterToNumber("B-")).toBe(2.7);
+        expect(scope.letterToNumber("B-")).toBe(2.7);
     });
 
     it("should be 3",function() {
-        expect(letterToNumber("B")).toBe(3);
+        expect(scope.letterToNumber("B")).toBe(3);
     });
 
     it("should be 3.3",function() {
-        expect(letterToNumber("B+")).toBe(3.3);
+        expect(scope.letterToNumber("B+")).toBe(3.3);
     });
 
     it("should be 3.7",function() {
-        expect(letterToNumber("A-")).toBe(3.7);
+        expect(scope.letterToNumber("A-")).toBe(3.7);
     });
 
     it("should be 4",function() {
-        expect(calc("A",5,"A",4,"A",1234)).toBe(4.0);
+        scope.grade1 = scope.grade2 = scope.grade3 = "B";
+        scope.credits1 = 5;
+        expect(scope.calc()).toBe(3.0);
     });
 
     it("should be 3",function() {
-        expect(calc("B",5,"B",4,"B",1234)).toBe(3.0);
+        scope.grade1 = scope.grade2 = scope.grade3 = "C";
+        scope.credits1 = 5;
+        expect(scope.calc()).toBe(2.0);
     });
 
     it("should be 2",function() {
-        expect(calc("C",5,"C",4,"C",1234)).toBe(2.0);
+        scope.grade1 = scope.grade2 = scope.grade3 = "D";
+        scope.credits1 = 5;
+        expect(scope.calc()).toBe(1.0);
     });
 
     it("should be 1",function() {
-        expect(calc("D",5,"D",4,"D",1234)).toBe(1.0);
+        scope.grade1 = scope.grade2 = scope.grade3 = "F";
+        scope.credits1 = 5;
+        expect(scope.calc()).toBe(0.0);
     });
 
     it("should be 1.3",function() {
-        expect(calc("D+",5,"D+",4,"D+",1234)).toBe(1.3);
+        scope.grade1 = scope.grade2 = scope.grade3 = "A";
+        scope.credits1 = 5;
+        expect(scope.calc()).toBe(4.0);
     });
 
-    it("should be 1.7",function() {
-        expect(calc("C-",5,"C-",4,"C-",1234)).toBe(1.7);
+    it("should be false", function(){
+        expect(scope.isNumeric("A")).toBe(false);
     });
 
-    it("should be 2.3",function() {
-        expect(calc("C+",5,"C+",4,"C+",1234)).toBe(2.3);
+    it("should be true", function(){
+        expect(scope.isNumeric(3)).toBe(true);
     });
 
-    it("should be 2.7",function() {
-        expect(calc("B-",5,"B-",4,"B-",1234)).toBe(2.7);
-    });
 
-    it("should be 3.3",function() {
-        expect(calc("B+",5,"B+",4,"B+",1234)).toBe(3.3);
-    });
-
-    it("should be 3.7",function() {
-        expect(calc("A-",5,"A-",4,"A-",1234)).toBe(3.7);
-    });
 
 });
