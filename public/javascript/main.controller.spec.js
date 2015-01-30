@@ -154,26 +154,43 @@ describe('Testing controller: calcCtrl', function(){
         expect(scope.isLetter("E")).toBe(false);
     });
 
+    it("should be false", function(){
+        expect(scope.isEmpty("s")).toBe(false);
+    });
+
+    it("should be true", function(){
+        expect(scope.isEmpty("")).toBe(true);
+    });
+
     it("should be error", function(){
         scope.grade1 = scope.grade2 = scope.grade3 = "A";
         scope.credits1 = scope.credits2 = scope.credits3 = "J";
-        expect(scope.getGPA()).toBe("There was an error.");
+        expect(scope.makeGPA()).toBe("There was an error.");
+    });
+
+    it("should be error", function(){
+        scope.grade1 = scope.grade2 = scope.grade3 = "A";
+        expect(scope.makeGPA()).toBe("An input is empty");
     });
 
     it("should be green", function(){
         scope.grade1 = scope.grade2 = scope.grade3 = "A";
         scope.credits1 = scope.credits2 = scope.credits3 = 5;
-        expect(scope.getGPA()).toBe("Your GPA is: <span class='green'>4!</span>");
+        scope.makeGPA();
+        expect(scope.color()).toBe("class='good'");
     });
     it("should be yellow", function(){
         scope.grade1 = scope.grade2 = scope.grade3 = "C";
         scope.credits1 = scope.credits2 = scope.credits3 = 5;
-        expect(scope.getGPA()).toBe("Your GPA is: <span class='yellow'>2!</span>");
+        scope.makeGPA();
+        expect(scope.color()).toBe("class='okay'")
     });
+
     it("should be red", function(){
         scope.grade1 = scope.grade2 = scope.grade3 = "F";
         scope.credits1 = scope.credits2 = scope.credits3 = 5;
-        expect(scope.getGPA()).toBe("Your GPA is: <span class='red'>0!</span>");
+        scope.makeGPA();
+        expect(scope.color()).toBe("class='bad'")
     });
 
 });

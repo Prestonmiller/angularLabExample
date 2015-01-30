@@ -59,18 +59,44 @@ var mainApp = angular.module("mainApp", []);
         $scope.credits2 = "";
         $scope.credits3 = "";
         $scope.gpa = "";
+        $scope.message = "";
+
+        $scope.makeGPA = function(){
+            if($scope.isEmpty($scope.grade1) || $scope.isEmpty($scope.grade2) || $scope.isEmpty($scope.grade3) || $scope.isEmpty($scope.credits1) || $scope.isEmpty($scope.credits2) || $scope.isEmpty($scope.credits3)){
+                $scope.message = "An input is empty";
+                return;
+            }
+            if (!$scope.isLetter($scope.grade1) || !$scope.isLetter($scope.grade2) || !$scope.isLetter($scope.grade3) || !$scope.isNumeric($scope.credits1) || !$scope.isNumeric($scope.credits2) || !$scope.isNumeric($scope.credits3)) {
+                $scope.message = "There was An error";
+                return;
+            }
+            $scope.message = "Your GPA is: ";
+            $scope.gpa = $scope.calc();
+
+        }
+
+        $scope.isEmpty = function(item){
+            return item.length == 0;
+        }
+
+        $scope.getMessage = function(){
+            return $scope.message;
+        }
 
         $scope.getGPA = function(){
-            if (!$scope.isLetter($scope.grade1) || !$scope.isLetter($scope.grade2) || !$scope.isLetter($scope.grade3) || !$scope.isNumeric($scope.credits1) || !$scope.isNumeric($scope.credits2) || !$scope.isNumeric($scope.credits3)) {
-                return "There was an error.";
+            if($scope.isNumeric(gpa)){
+                return $scope.gpa+"!";
             }
-            var GPA = $scope.calc();
-            if (GPA >= 3) {
-                return "Your GPA is: <span class='green'>" + GPA + "!</span>";
-            } else if (GPA >= 2.0) {
-                return "Your GPA is: <span class='yellow'>" + GPA + "!</span>";
+            return "";
+        }
+
+        $scope.color = function(){
+            if ($scope.gpa >= 3) {
+                return "class='good'";
+            } else if ($scope.gpa >= 2.0) {
+                return "class='okay'";
             } else {
-                return "Your GPA is: <span class='red'>" + GPA + "!</span>";
+                return "class='bad'";
             }
         }
 
