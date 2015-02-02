@@ -64,49 +64,51 @@ var mainApp = angular.module("mainApp", []);
         $scope.makeGPA = function(){
             if($scope.isEmpty($scope.grade1) || $scope.isEmpty($scope.grade2) || $scope.isEmpty($scope.grade3) || $scope.isEmpty($scope.credits1) || $scope.isEmpty($scope.credits2) || $scope.isEmpty($scope.credits3)){
                 $scope.message = "An input is empty";
+                $scope.gpa = "";
                 return;
             }
             if (!$scope.isLetter($scope.grade1) || !$scope.isLetter($scope.grade2) || !$scope.isLetter($scope.grade3) || !$scope.isNumeric($scope.credits1) || !$scope.isNumeric($scope.credits2) || !$scope.isNumeric($scope.credits3)) {
-                $scope.message = "There was An error";
+                $scope.message = "There was an error.";
+                $scope.gpa = "";
                 return;
             }
             $scope.message = "Your GPA is: ";
             $scope.gpa = $scope.calc();
 
-        }
+        };
 
         $scope.isEmpty = function(item){
             return item.length == 0;
-        }
+        };
 
         $scope.getMessage = function(){
             return $scope.message;
-        }
+        };
 
         $scope.getGPA = function(){
-            if($scope.isNumeric(gpa)){
+            if($scope.isNumeric($scope.gpa)){
                 return $scope.gpa+"!";
             }
             return "";
-        }
+        };
 
         $scope.color = function(){
             if ($scope.gpa >= 3) {
-                return "class='good'";
+                return "good";
             } else if ($scope.gpa >= 2.0) {
-                return "class='okay'";
+                return "okay";
             } else {
-                return "class='bad'";
+                return "bad";
             }
-        }
+        };
 
         $scope.isNumeric = function(arg1){
             return !isNaN(parseFloat(arg1));
-        }
+        };
 
         $scope.calc = function(){
             return (Number($scope.letterToNumber($scope.grade1))*Number($scope.credits1)+Number($scope.letterToNumber($scope.grade2))*Number($scope.credits2)+Number($scope.letterToNumber($scope.grade3))*Number($scope.credits3))/(Number($scope.credits1)+Number($scope.credits2)+Number($scope.credits3));
-        }
+        };
 
         $scope.letterToNumber = function(course) {
             switch (course.toUpperCase()) {
@@ -133,7 +135,7 @@ var mainApp = angular.module("mainApp", []);
                 default:
                     return 0;
             }
-        }
+        };
         $scope.isLetter = function(course) {
             switch (course.toUpperCase()) {
                 case "A":
@@ -161,6 +163,6 @@ var mainApp = angular.module("mainApp", []);
                 default:
                     return false;
             }
-        }
+        };
 
     });

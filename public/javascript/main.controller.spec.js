@@ -165,32 +165,69 @@ describe('Testing controller: calcCtrl', function(){
     it("should be error", function(){
         scope.grade1 = scope.grade2 = scope.grade3 = "A";
         scope.credits1 = scope.credits2 = scope.credits3 = "J";
-        expect(scope.makeGPA()).toBe("There was an error.");
+        scope.makeGPA();
+        expect(scope.message).toBe("There was an error.");
     });
 
     it("should be error", function(){
         scope.grade1 = scope.grade2 = scope.grade3 = "A";
-        expect(scope.makeGPA()).toBe("An input is empty");
+        scope.makeGPA();
+        expect(scope.message).toBe("An input is empty");
     });
 
     it("should be green", function(){
         scope.grade1 = scope.grade2 = scope.grade3 = "A";
         scope.credits1 = scope.credits2 = scope.credits3 = 5;
         scope.makeGPA();
-        expect(scope.color()).toBe("class='good'");
+        expect(scope.color()).toBe("good");
     });
     it("should be yellow", function(){
         scope.grade1 = scope.grade2 = scope.grade3 = "C";
         scope.credits1 = scope.credits2 = scope.credits3 = 5;
         scope.makeGPA();
-        expect(scope.color()).toBe("class='okay'")
+        expect(scope.color()).toBe("okay");
     });
 
     it("should be red", function(){
         scope.grade1 = scope.grade2 = scope.grade3 = "F";
         scope.credits1 = scope.credits2 = scope.credits3 = 5;
         scope.makeGPA();
-        expect(scope.color()).toBe("class='bad'")
+        expect(scope.color()).toBe("bad");
+    });
+
+    it("should be 4.0", function(){
+        scope.grade1 = scope.grade2 = scope.grade3 = "A";
+        scope.credits1 = scope.credits2 = scope.credits3 = 5;
+        scope.makeGPA();
+        expect(scope.getGPA()).toBe("4!");
+    });
+
+    it("should be 3.0", function(){
+        scope.grade1 = scope.grade2 = scope.grade3 = "B";
+        scope.credits1 = scope.credits2 = scope.credits3 = 5;
+        scope.makeGPA();
+        expect(scope.getGPA()).toBe("3!");
+    });
+
+    it("should be 2.0", function(){
+        scope.grade1 = scope.grade2 = scope.grade3 = "C";
+        scope.credits1 = scope.credits2 = scope.credits3 = 5;
+        scope.makeGPA();
+        expect(scope.getGPA()).toBe("2!");
+    });
+
+    it("should be 1.0", function(){
+        scope.grade1 = scope.grade2 = scope.grade3 = "D";
+        scope.credits1 = scope.credits2 = scope.credits3 = 5;
+        scope.makeGPA();
+        expect(scope.getGPA()).toBe("1!");
+    });
+
+    it("should be 0.0", function(){
+        scope.grade1 = scope.grade2 = scope.grade3 = "F";
+        scope.credits1 = scope.credits2 = scope.credits3 = 5;
+        scope.makeGPA();
+        expect(scope.getGPA()).toBe("0!");
     });
 
 });
